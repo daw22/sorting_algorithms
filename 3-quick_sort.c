@@ -6,6 +6,7 @@
  * @array: the array to partition
  * @start: starting index of the section of the array to be partitioned
  * @end: last index of the section of the array to be partitioned
+ * @size: total size of the array (used when printing using print_array)
  *
  * Description: The pivot is always selected as the last number of the array
  * in the Lomuto partitioning scheme
