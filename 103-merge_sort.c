@@ -2,14 +2,14 @@
 #include <stdio.h>
 
 /**
- * merg_arr - sort sub-array
+ * merge_arr - sort sub-array
  * @arr: sub-array to be sort
  * @temp: an array to store the sorted ints
  * @start: start index of the sub_array
  * @middle: the middle index of sub-array
  * @last: the last index of the sub-array
  */
-void merg_arr(int *arr, int *temp, int start, int middle, int last)
+void merge_arr(int *arr, int *temp, int start, int middle, int last)
 {
 	int i, j, k = 0;
 
@@ -47,14 +47,14 @@ void sort_rec(int *arr, int *temp, int start, int last)
 		middle = start + (last - start) / 2;
 		sort_rec(arr, temp, start, middle);
 		sort_rec(arr, temp, middle, last);
-		merg_arr(arr, temp, start, middle, last);
+		merge_arr(arr, temp, start, middle, last);
 	}
 }
 
 /**
- * merg_sort - sorts an array of integers in ascending
+ * merge_sort - sorts an array of integers in ascending
  * order using merge sort algorithm
- * @arry: arry to sort
+ * @array: arry to sort
  * @size: size of the array to sort
  */
 void merge_sort(int *array, size_t size)
