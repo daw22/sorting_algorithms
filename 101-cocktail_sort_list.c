@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "sort.h"
 
 /**
@@ -52,10 +51,10 @@ void cocktail_sort_list(listint_t **list)
 		listint_t *ptr = *list;
 
 		j = 0;
-		for (i = 0; i < size; i++)
+		for (i = 1; i < size; i++)
 		{
 			swapped = 0;
-			while (j < size - 1 - i)
+			while (j < size - i)
 			{
 				if (ptr->n > ptr->next->n)
 				{
@@ -68,7 +67,7 @@ void cocktail_sort_list(listint_t **list)
 				j++;
 			}
 			ptr = ptr->prev;
-			while (j > (i + 1))
+			while (j > i)
 			{
 				if (ptr->n < ptr->prev->n)
 				{
