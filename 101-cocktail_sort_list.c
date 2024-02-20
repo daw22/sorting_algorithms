@@ -2,6 +2,24 @@
 #include "sort.h"
 
 /**
+ * get_list_size - returns the number of nodes in a doubly linked list
+ * @list: pointer to the first node of the list
+ *
+ * Return: the size (number of nodes) of the list
+ */
+size_t get_list_size(listint_t *list)
+{
+	size_t size = 0;
+
+	while (list)
+	{
+		list = list->next;
+		size++;
+	}
+	return (size);
+}
+
+/**
  * swap_nodes - swaps places of two nodes of a doubly linked list
  * @list: pointer to a pointer to the first node of the list
  * @n1: pointer to first of the nodes to swap
@@ -21,7 +39,6 @@ void swap_nodes(listint_t **list, listint_t *n1, listint_t *n2)
 		*list = n2;
 }
 
-
 /**
  * cocktail_sort_list - sorts a doubly linked list in ascending order of the n
  * value of the nodes using the cocktail sorting algorithm
@@ -29,45 +46,39 @@ void swap_nodes(listint_t **list, listint_t *n1, listint_t *n2)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	size_t size = 0, i, j, swapped;
-	listint_t *ptr = *list, *iter;
+	size_t size = get_list_size(*list), i, j, swapped;
+	listint_t *ptr = *list;
 
-	while (ptr != NULL)
-	{
-		ptr = ptr->next;
-		size++;
-	}
-	iter = *list;
 	j = 0;
 	for (i = 0; i < size; i++)
 	{
 		swapped = 0;
 		while (j < size - 1 - i)
 		{
-			if (iter->n > iter->next->n)
+			if (ptr->n > ptr->next->n)
 			{
-				swap_nodes(list, iter, iter->next);
+				swap_nodes(list, ptr, ptr->next);
 				print_list(*list);
 				swapped = 1;
 			}
 			else
-				iter = iter->next;
+				ptr = ptr->next;
 			j++;
 		}
-		iter = iter->prev;
+		ptr = ptr->prev;
 		while (j > (i + 1))
 		{
-			if (iter->n < iter->prev->n)
+			if (ptr->n < ptr->prev->n)
 			{
-				swap_nodes(list, iter->prev, iter);
+				swap_nodes(list, ptr->prev, ptr);
 				print_list(*list);
 				swapped = 1;
 			}
 			else
-				iter = iter->prev;
+				ptr = ptr->prev;
 			j--;
 		}
-		iter = iter->next;
+		ptr = ptr->next;
 		if (!swapped)
 			break;
 	}
