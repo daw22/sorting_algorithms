@@ -78,16 +78,19 @@ void sift_down(int *array, size_t unsorted_size, size_t full_size)
  */
 void heap_sort(int *array, size_t size)
 {
-	size_t i;
-	int tmp;
-
-	max_heapify(array, size);
-	for (i = 0; i < size - 1; i++)
+	if (array)
 	{
-		tmp = array[0];
-		array[0] = array[size - 1 - i];
-		array[size - 1 - i] = tmp;
-		print_array(array, size);
-		sift_down(array, size - i - 1, size);
+		size_t i;
+		int tmp;
+
+		max_heapify(array, size);
+		for (i = 0; i < size - 1; i++)
+		{
+			tmp = array[0];
+			array[0] = array[size - 1 - i];
+			array[size - 1 - i] = tmp;
+			print_array(array, size);
+			sift_down(array, size - i - 1, size);
+		}
 	}
 }
